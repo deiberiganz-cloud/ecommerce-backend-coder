@@ -1,0 +1,31 @@
+<div class="carrito">
+    <a href="/products">← Seguir comprando</a>
+    <h2>Mi Carrito</h2>
+    <p><small>ID: {{cart._id}}</small></p>
+    <hr>
+
+    {{#if cart.products.length}}
+        <table>
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Precio unitario</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each cart.products}}
+                <tr>
+                    <td>{{this.product.title}}</td>
+                    <td>${{this.product.price}}</td>
+                    <td>{{this.quantity}}</td>
+                    <td>${{this.product.price}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <p>El carrito está vacío.</p>
+    {{/if}}
+</div>

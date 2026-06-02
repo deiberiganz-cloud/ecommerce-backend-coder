@@ -1,0 +1,41 @@
+<div class="producto-detalle">
+    <a href="/products">← Volver al listado</a>
+    <h2>{{product.title}}</h2>
+    <p><strong>Descripción:</strong> {{product.description}}</p>
+    <p><strong>Código:</strong> {{product.code}}</p>
+    <p><strong>Precio:</strong> ${{product.price}}</p>
+    <p><strong>Stock:</strong> {{product.stock}}</p>
+    <p><strong>Categoría:</strong> {{product.category}}</p>
+    <p><strong>Disponible:</strong> {{product.status}}</p>
+
+    <div id="agregar-carrito">
+        <input type="text" id="cartId" placeholder="Ingresá el ID del carrito">
+        <button onclick="agregarAlCarrito('{{product._id}}')">Agregar al carrito</button>
+    </div>
+    <p id="mensaje-carrito"></p>
+</div>
+
+<script>
+async function agregarAlCarrito(productId) {
+    const cartId = document.getElementById('cartId').value.trim()
+    const msg = document.getElementById('mensaje-carrito')
+    if (!cartId) {
+        msg.innerText = '⚠️ Ingresá un ID de carrito'
+        return
+    }
+    try {
+        const res = await fetch(`/api/carts/${cartId}/products/${productId}`, { method: 'POST' })
+        const data = await res.json()
+        if (data.status === 'success') {
+            msg.innerText = '✅ Producto agregado al carrito'
+            msg.style.color = 'green'
+        } else {
+            msg.innerText = `❌ ${data.error}`
+            msg.style.color = 'red'
+        }
+    } catch (e) {
+        msg.innerText = '❌ Error al agregar al carrito'
+        msg.style.color = 'red'
+    }
+}
+</script>

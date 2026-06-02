@@ -1,0 +1,47 @@
+<h2>Productos</h2>
+
+<div id="filtros">
+    <form action="/products" method="GET">
+        <input type="text" name="query" placeholder="Categoría (ej: ropa) o true/false" value="{{query}}">
+        <select name="sort">
+            <option value="">Sin orden</option>
+            <option value="asc"  {{#if (eq sort 'asc')}}selected{{/if}}>Precio ↑</option>
+            <option value="desc" {{#if (eq sort 'desc')}}selected{{/if}}>Precio ↓</option>
+        </select>
+        <button type="submit">Filtrar</button>
+    </form>
+</div>
+
+{{#if error}}
+    <p class="error">{{error}}</p>
+{{/if}}
+
+<div id="lista-productos">
+    {{#each payload}}
+    <div class="producto-card">
+        <h3>{{this.title}}</h3>
+        <p><strong>Categoría:</strong> {{this.category}}</p>
+        <p><strong>Precio:</strong> ${{this.price}}</p>
+        <p><strong>Stock:</strong> {{this.stock}}</p>
+        <a href="/products/{{this._id}}">Ver detalle →</a>
+    </div>
+    {{else}}
+        <p>No hay productos disponibles.</p>
+    {{/each}}
+</div>
+
+<div id="paginacion">
+    {{#if hasPrevPage}}
+        <a href="{{prevLink}}">← Anterior</a>
+    {{else}}
+        <span class="disabled">← Anterior</span>
+    {{/if}}
+
+    <span>Página {{page}} de {{totalPages}}</span>
+
+    {{#if hasNextPage}}
+        <a href="{{nextLink}}">Siguiente →</a>
+    {{else}}
+        <span class="disabled">Siguiente →</span>
+    {{/if}}
+</div>

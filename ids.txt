@@ -1,0 +1,12 @@
+=== IDs del proyecto ===
+
+PRODUCTOS:
+Set Joyas Dorado     → 6a1e2794da0dabf9b6c96f87
+Cadena Tourbillon    → 6a1e291ada0dabf9b6c96f88
+Aros Frutilla        → 6a1e2925da0dabf9b6c96f89
+Aros Corazon         → 6a1e292dda0dabf9b6c96f8a
+Pulsera Italiana     → 6a1e2933da0dabf9b6c96f8b
+Choker Gargantilla   → 6a1e293cda0dabf9b6c96f8c
+
+CARRITOS:
+Carrito 1            → 6a1e2e6fda0dabf9b6c96f8d
