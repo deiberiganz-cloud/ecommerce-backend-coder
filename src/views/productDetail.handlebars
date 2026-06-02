@@ -6,7 +6,7 @@
     <p><strong>Precio:</strong> ${{product.price}}</p>
     <p><strong>Stock:</strong> {{product.stock}}</p>
     <p><strong>Categoría:</strong> {{product.category}}</p>
-    <p><strong>Disponible:</strong> {{product.status}}</p>
+    <p><strong>Disponible:</strong> {{#if product.status}}Sí{{else}}No{{/if}}</p>
 
     <div id="agregar-carrito">
         <input type="text" id="cartId" placeholder="Ingresá el ID del carrito">
