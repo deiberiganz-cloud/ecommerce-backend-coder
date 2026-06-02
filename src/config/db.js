@@ -7,8 +7,7 @@ export const conectarDB = async (url) => {
         })
         console.log('DB online...!!!')
     } catch (error) {
-        console.log(`Error al conectar DB: ${error.message}`)
+        console.error(`Error al conectar DB: ${error.message}`)
         process.exit(1)
     }
 }
-// dd

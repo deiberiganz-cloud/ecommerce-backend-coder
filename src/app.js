@@ -34,31 +34,43 @@ app.get('/products', async (req, res) => {
         const resultado = await manager.getProductos({ limit, page, query, sort })
         res.render('products', { ...resultado, query, sort })
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).render('products', { error: 'Error al cargar productos' })
     }
 })
 
 app.get('/products/:pid', async (req, res) => {
+    const { pid } = req.params
+
     try {
         const manager = new ProductosManager()
-        const product = await manager.getProductoById(req.params.pid)
-        if (!product) return res.status(404).send('Producto no encontrado')
+        const product = await manager.getProductoById(pid)
+
+        if (!product) {
+            return res.status(404).send('Producto no encontrado')
+        }
+
         res.render('productDetail', { product })
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).send('Error al cargar el producto')
     }
 })
 
 app.get('/carts/:cid', async (req, res) => {
+    const { cid } = req.params
+
     try {
         const manager = new CarritosManager()
-        const cart = await manager.getCarritoById(req.params.cid)
-        if (!cart) return res.status(404).send('Carrito no encontrado')
+        const cart = await manager.getCarritoById(cid)
+
+        if (!cart) {
+            return res.status(404).send('Carrito no encontrado')
+        }
+
         res.render('cart', { cart })
     } catch (error) {
-        console.log(error)
+        console.error(error)
         res.status(500).send('Error al cargar el carrito')
     }
 })
