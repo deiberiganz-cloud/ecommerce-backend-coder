@@ -4,7 +4,7 @@ export class ProductosManager {
 
     async getProductos({ limit = 10, page = 1, query, sort } = {}) {
 
-        // Armamos el filtro según el query
+        
         let filtro = {}
         if (query) {
             if (query === 'true' || query === 'false') {
@@ -14,7 +14,7 @@ export class ProductosManager {
             }
         }
 
-        // Armamos el orden por precio
+        // por precio
         let sortOption = {}
         if (sort === 'asc')  sortOption = { price: 1 }
         if (sort === 'desc') sortOption = { price: -1 }
@@ -34,7 +34,7 @@ export class ProductosManager {
             sort: sortOption
         })
 
-        // Armamos los links de paginación
+        // links de paginación
         const buildLink = (p) => {
             if (!p) return null
             let link = `/api/products?limit=${limit}&page=${p}`
