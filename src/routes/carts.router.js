@@ -6,7 +6,6 @@ export const router = Router()
 
 const carritosManager = new CarritosManager()
 
-// POST /api/carts  →  crear carrito
 router.post('/', async (req, res) => {
     try {
         let carrito = await carritosManager.create()
@@ -21,7 +20,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-// GET /api/carts/:cid  →  ver carrito con populate
 router.get('/:cid', async (req, res) => {
     let { cid } = req.params
 
@@ -48,7 +46,6 @@ router.get('/:cid', async (req, res) => {
     }
 })
 
-// POST /api/carts/:cid/products/:pid  →  agregar producto al carrito
 router.post('/:cid/products/:pid', async (req, res) => {
     let { cid, pid } = req.params
 
@@ -75,7 +72,6 @@ router.post('/:cid/products/:pid', async (req, res) => {
     }
 })
 
-// DELETE /api/carts/:cid/products/:pid  →  eliminar producto del carrito
 router.delete('/:cid/products/:pid', async (req, res) => {
     let { cid, pid } = req.params
 
@@ -102,7 +98,6 @@ router.delete('/:cid/products/:pid', async (req, res) => {
     }
 })
 
-// PUT /api/carts/:cid  →  reemplazar todos los productos
 router.put('/:cid', async (req, res) => {
     let { cid } = req.params
     let { products } = req.body
@@ -135,7 +130,6 @@ router.put('/:cid', async (req, res) => {
     }
 })
 
-// PUT /api/carts/:cid/products/:pid  →  actualizar cantidad
 router.put('/:cid/products/:pid', async (req, res) => {
     let { cid, pid } = req.params
     let { quantity } = req.body
@@ -168,7 +162,6 @@ router.put('/:cid/products/:pid', async (req, res) => {
     }
 })
 
-// DELETE /api/carts/:cid  →  vaciar carrito
 router.delete('/:cid', async (req, res) => {
     let { cid } = req.params
 

@@ -11,3 +11,4 @@ export const conectarDB = async (url) => {
         process.exit(1)
     }
 }
+// dd

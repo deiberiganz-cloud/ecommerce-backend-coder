@@ -6,7 +6,6 @@ export const router = Router()
 
 const productosManager = new ProductosManager()
 
-// GET /api/products  →  listado con limit, page, query, sort
 router.get('/', async (req, res) => {
     try {
         let { limit = 10, page = 1, query, sort } = req.query
@@ -23,7 +22,6 @@ router.get('/', async (req, res) => {
     }
 })
 
-// GET /api/products/:pid  →  producto por ID
 router.get('/:pid', async (req, res) => {
     let { pid } = req.params
 
@@ -50,7 +48,6 @@ router.get('/:pid', async (req, res) => {
     }
 })
 
-// POST /api/products  →  crear producto
 router.post('/', async (req, res) => {
     let { title, description, code, price, stock, category, status, thumbnails } = req.body
 
@@ -92,7 +89,6 @@ router.post('/', async (req, res) => {
     }
 })
 
-// PUT /api/products/:pid  →  actualizar producto
 router.put('/:pid', async (req, res) => {
     let { pid } = req.params
 
@@ -119,7 +115,6 @@ router.put('/:pid', async (req, res) => {
     }
 })
 
-// DELETE /api/products/:pid  →  eliminar producto
 router.delete('/:pid', async (req, res) => {
     let { pid } = req.params
 
@@ -136,7 +131,6 @@ router.delete('/:pid', async (req, res) => {
             return res.status(404).json({ status: 'error', error: `Producto con id ${pid} no encontrado` })
         }
 
-        // Avisamos por WebSocket que se eliminó
         const { serverSocket } = await import('../app.js')
         serverSocket.emit('productoEliminado', pid)
 

@@ -22,19 +22,11 @@ app.engine('handlebars', engine({
 }))
 app.set('view engine', 'handlebars')
 app.set('views', path.join(__dirname, './views'))
-
-// Middleware
 app.use(express.static('./public'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-// Rutas API
 app.use('/api/products', productsRouter)
 app.use('/api/carts', cartsRouter)
-
-// ── Rutas de vistas ──────────────────────────────────────────
-
-// GET /products 
 app.get('/products', async (req, res) => {
     try {
         const manager = new ProductosManager()
@@ -47,7 +39,6 @@ app.get('/products', async (req, res) => {
     }
 })
 
-// GET /products/:pid  detalle del producto
 app.get('/products/:pid', async (req, res) => {
     try {
         const manager = new ProductosManager()
@@ -60,7 +51,6 @@ app.get('/products/:pid', async (req, res) => {
     }
 })
 
-// GET /carts/:cid  vista del carrito
 app.get('/carts/:cid', async (req, res) => {
     try {
         const manager = new CarritosManager()
@@ -73,7 +63,6 @@ app.get('/carts/:cid', async (req, res) => {
     }
 })
 
-// ── Servidor 
 const serverHTTP = createServer(app)
 export const serverSocket = new Server(serverHTTP)
 
@@ -85,7 +74,6 @@ serverSocket.on('connection', socket => {
     })
 })
 
-// ── Iniciar servidor ─────────────────────────────────────────
 serverHTTP.listen(PORT, () => {
     console.log(`🚀 arrancanddo servidor ${PORT}`)
 })
